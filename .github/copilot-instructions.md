@@ -2,11 +2,12 @@
 
 Purpose: short, actionable guidance to help AI coding agents become productive quickly in this repository.
 
+**Repo-specific findings:** This repository currently contains only `.github/copilot-instructions.md`. There is no `README.md`, `CONTRIBUTING.md`, CI workflows under `.github/workflows/`, or language manifests (`package.json`, `pyproject.toml`, `go.mod`, etc.). Agents should treat the repository as “infrastructure-light” and follow the steps below to discover or request missing information.
+
 ## What to read first ✅
-- `README.md`, `CONTRIBUTING.md`, `docs/` — high-level goals and architecture notes.
-- `.github/workflows/` — exact build/test/lint commands used in CI.
-- Top-level manifests: `package.json` / `Makefile` / `pyproject.toml` / `go.mod` / `pom.xml` etc.
-- `Dockerfile`, `docker-compose.yml`, `infra/`, `deploy/` — deployment/integration points.
+- **Note:** this repo currently *does not* include `README.md`, `CONTRIBUTING.md`, `docs/`, or `.github/workflows/`. If present, those files are the primary sources for high-level goals and CI commands.
+- Top-level manifests to look for (none found here): `package.json` / `Makefile` / `pyproject.toml` / `go.mod` / `pom.xml`.
+- Deployment/integration files to check (none found here): `Dockerfile`, `docker-compose.yml`, `infra/`, `deploy/`.
 
 ## Quick discovery checklist 🔍
 1. Identify primary language and package manager from manifest files (e.g., `package.json`, `pyproject.toml`, `go.mod`).
@@ -16,12 +17,17 @@ Purpose: short, actionable guidance to help AI coding agents become productive q
 
 > Tip: If CI uses specific commands (e.g., `npm run ci`, `make test-all`), use those exact commands rather than guessing.
 
-## How to run/build/test (fill concrete commands) 🔧
-- Unit tests: replace with CI command, e.g., `npm test` or `make test`.
-- Linting: e.g., `npm run lint` / `flake8` / `golangci-lint run`.
-- Local dev: e.g., `npm start`, `docker-compose up`, or `go run ./cmd/service`.
+## How to run/build/test (repo-specific) 🔧
+This repository currently has no discovered build or test commands because there are no language manifests, CI workflows, or source files present. For actionable steps, an AI agent should do one of the following:
 
-(Contributors: please replace these placeholders with the exact commands the repo uses.)
+- If you have write access, open an Issue requesting canonical build/test instructions and adding a `README.md` and `.github/workflows/ci.yml` that document the commands.
+- When adding CI or local scripts, follow common conventions for the primary language you choose (examples below are references—only run when the matching manifest exists):
+  - Node.js: `npm install` then `npm test` and `npm run lint` (if `package.json` exists)
+  - Python: `python -m venv .venv; .\.venv\Scripts\Activate; pip install -r requirements.txt; pytest` (if `pyproject.toml` or `requirements.txt` exists)
+  - Go: `go test ./...` (if `go.mod` exists)
+- If no manifests are present and you need confirmation, contact the repo owner or open an issue asking for the expected developer workflow.
+
+Agents should not assume commands; instead, prefer discovering manifests or asking maintainers.
 
 ## Architecture & boundaries (how to find them) 🧭
 - Inspect `README.md`/`docs/` for architecture notes.
